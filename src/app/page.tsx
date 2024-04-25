@@ -53,13 +53,11 @@ export default function Home() {
 
         <div className="row-span-6 p-4 gap-4 flex flex-1 flex-col max-h-[300px]  overflow-y-auto ">
           {messages.map((msg, index) => (
-            <div className={`message-${msg.type} `}>
-              <p
-                key={index}
-                className="text-sm break-words font-medium"
-              >
-                {msg.content}
-              </p>
+            <div
+              key={index}
+              className={`message-${msg.type} `}
+            >
+              <p className="text-sm break-words font-medium">{msg.content}</p>
             </div>
           ))}
 
