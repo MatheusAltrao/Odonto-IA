@@ -24,12 +24,12 @@ export async function POST(request: Request) {
   } */
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4-turbo',
+    model: 'gpt-3.5-turbo',
     messages: [
       {
         role: 'system',
         content:
-          'You are an AI trained to answer questions specifically about dentistry. Please only provide answers related to dental topics and politely decline to answer if the question is outside this scope.',
+          'You are an AI trained to answer questions specifically about dentistry,you will be used to answer activities and tests, so if it is a question related to a topic, always try to do it separately with a title and subtitles, if it is a test question, answer the alternative first and then a simple and direct text about why you chose that alternative',
       },
       { role: 'user', content: prompt },
     ],

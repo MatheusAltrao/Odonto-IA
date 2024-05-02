@@ -1,105 +1,110 @@
 'use client';
-import Header from '@/components/Header';
+import InputRegister from '@/components/InputRegister';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { CornerDownLeft, Loader } from 'lucide-react';
-import { FormEvent, useState } from 'react';
+import { useToast } from '@/components/ui/use-toast';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
+import { useTransition } from 'react';
+import { useForm } from 'react-hook-form';
 
-type MessageType = {
-  type: 'user' | 'ia';
-  content: string;
-};
-
-type ChoiceType = {
-  message: { content: string };
-};
+import { useRouter } from 'next/navigation';
+import { signInAction } from '../../actions/login';
+import { ILoginSchema, loginSchema } from '../../types/login.types';
 
 export default function Home() {
-  const [choices, setChoices] = useState<ChoiceType[]>([]);
-  const [prompt, setPrompt] = useState<string>('');
-  const [messages, setMessages] = useState<MessageType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
+  const router = useRouter();
 
-  const handleSendMessage = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginSchema>({
+    resolver: zodResolver(loginSchema),
+  });
 
-    setMessages((prev) => [...prev, { type: 'user', content: prompt }]);
-
-    const response = await fetch('/api/chat-gpt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prompt }),
-    });
-    setPrompt('');
-    setIsLoading(false);
-    const result = await response.json();
-    setMessages((prev) => [
-      ...prev,
-      ...result.choices.map((choice: ChoiceType) => ({
-        type: 'ia',
-        content: choice.message.content,
-      })),
-    ]);
+  const handleLogin = async (data: ILoginSchema) => {
+    try {
+      await signInAction(data.email, data.password);
+      toast({
+        variant: 'success',
+        title: 'Seja bem-vindo',
+        description: 'Use OdontoIA com moderação',
+      });
+    } catch (error) {
+      // console.error('Erro durante o login:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Email ou senha inválido',
+        description: 'verifique se inseriu as credenciais corretas',
+      });
+    }
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden max-w-[900px] mx-auto p-4 flex flex-1 ">
-      <div className=" rounded-xl bg-muted/50 w-full grid grid-rows-[1fr_5fr_1fr]">
-        <Header />
-
-        <div className="row-span-6 p-4 gap-4 flex flex-1 flex-col max-h-[300px]  overflow-y-auto ">
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`message-${msg.type} `}
-            >
-              <p className="text-sm break-words font-medium">{msg.content}</p>
-            </div>
-          ))}
-
-          {isLoading && (
-            <Loader
-              className="animate-spin text-primary"
-              size={20}
-            />
-          )}
-        </div>
-        <div className="p-4">
+    <div className="h-screen w-screen flex items-center justify-center">
+      <Card className="mx-auto max-w-sm w-full">
+        <CardHeader>
+          <CardTitle className="text-2xl">Entrar</CardTitle>
+          <CardDescription>Insira o seu email e senha para utilizar a plataforma</CardDescription>
+        </CardHeader>
+        <CardContent>
           <form
-            onSubmit={handleSendMessage}
-            className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
+            onSubmit={handleSubmit(handleLogin)}
+            className="grid gap-4"
           >
-            <Label
-              htmlFor="message"
-              className="sr-only"
-            >
-              Message
-            </Label>
-            <Textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              id="message"
-              placeholder="Type your message here..."
-              className="min-h-28 resize-none font-medium border-0 p-3 shadow-none focus-visible:ring-0"
-            />
-            <div className="flex items-center p-3 pt-0">
-              <Button
-                disabled={prompt.length == 0}
-                type="submit"
-                size="sm"
-                className={`ml-auto gap-1.5 ${prompt.length == 0 ? 'opacity-60' : 'opacity-100'}`}
-              >
-                Send Message
-                <CornerDownLeft className="size-3.5" />
-              </Button>
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <InputRegister
+                name="email"
+                type="email"
+                placeholder="matheus@example.com"
+                error={errors.email?.message}
+                register={register}
+              />
             </div>
+            <div className="grid gap-2">
+              <div className="flex items-center">
+                <Label htmlFor="password">Senha</Label>
+              </div>
+              <InputRegister
+                name="password"
+                type="password"
+                error={errors.password?.message}
+                register={register}
+                placeholder="*******"
+              />
+            </div>
+            <Button
+              disabled={isPending}
+              type="submit"
+              className="w-full"
+            >
+              Entrar
+            </Button>
           </form>
-        </div>
-      </div>
+          <div className="mt-4 text-center text-sm space-y-2">
+            <div>
+              Não possui uma conta?{' '}
+              <Link
+                href="/create-account"
+                className="underline"
+              >
+                Criar conta
+              </Link>
+            </div>
+            <Link
+              href="/forgot-password"
+              className="ml-auto inline-block text-sm underline"
+            >
+              Esqueceu a senha?
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
