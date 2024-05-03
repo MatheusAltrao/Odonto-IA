@@ -1,6 +1,10 @@
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
 import Navigation from './components/Navigation';
 
-const Sidebar = () => {
+const Sidebar = async () => {
+  const session = await getServerSession(authOptions);
+
   return (
     <div className="flex h-full flex-col bg-background border-r  ">
       <div className="flex h-16 items-center justify-between px-4">
@@ -11,8 +15,8 @@ const Sidebar = () => {
 
       <div className="border-t border-border px-4 py-4">
         <div className="text-sm">
-          <div className="font-medium">Jared Palmer</div>
-          <div className="text-muted-foreground">jared@example.com</div>
+          <div className="font-medium">{session?.user?.name}</div>
+          <div className="text-muted-foreground">{session?.user?.email}</div>
         </div>
       </div>
     </div>

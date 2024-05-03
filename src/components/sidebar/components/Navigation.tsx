@@ -8,6 +8,7 @@ import {
   SettingsIcon,
   UserIcon,
 } from 'lucide-react';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ActiveLink from './ActiveLink';
@@ -21,16 +22,16 @@ const Navigation = () => {
         <div className="text-sm font-medium text-muted-foreground">MENU</div>
         <div className="space-y-1">
           <ActiveLink
-            href="/dashboard/plans"
-            icon={<LayoutGridIcon size={20} />}
-            name="Plans"
+            href="/dashboard/chat"
+            icon={<MessageCircleIcon size={20} />}
+            name="Chat"
             pathname={pathname}
           />
 
           <ActiveLink
-            href="/dashboard/chat"
-            icon={<MessageCircleIcon size={20} />}
-            name="Chat"
+            href="/dashboard/plans"
+            icon={<LayoutGridIcon size={20} />}
+            name="Plans"
             pathname={pathname}
           />
         </div>
@@ -47,7 +48,8 @@ const Navigation = () => {
           </Link>
           <Link
             className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium hover:bg-muted transiti"
-            href="#"
+            href="/website"
+            target="_blank"
           >
             <Rss size={20} />
             Website
@@ -71,13 +73,13 @@ const Navigation = () => {
             pathname={pathname}
           />
 
-          <Link
-            className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium hover:bg-muted transition-colors"
-            href="#"
+          <button
+            className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium hover:bg-muted transition-colors"
+            onClick={() => signOut()}
           >
             <LogOutIcon size={20} />
             Logout
-          </Link>
+          </button>
         </div>
       </div>
     </div>
