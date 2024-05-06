@@ -12,9 +12,9 @@ const Dashboard = async ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <div className="grid grid-cols-[256px_1fr]">
+    <div className="grid h-screen w-full  grid-cols-[60px_5fr] xl:grid-cols-[1fr_5fr]">
       <Sidebar />
-      <div className="p-8 min-h-screen"> {children} </div>
+      <div className=" p-2 xl:p-8 h-screen flex flex-1 "> {children} </div>
     </div>
   );
 };

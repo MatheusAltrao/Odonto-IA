@@ -52,7 +52,7 @@ const Chat = () => {
   };
 
   return (
-    <div className=" rounded-xl bg-muted/50 w-full grid grid-rows-[1fr_5fr_1fr]">
+    <div className=" h-full rounded-xl bg-muted/50 w-full grid grid-rows-[1fr_5fr_1fr]">
       <Header />
 
       <div className="row-span-6 p-4 gap-4 flex flex-1 flex-col   overflow-y-auto ">
@@ -81,6 +81,7 @@ const Chat = () => {
           />
         )}
       </div>
+
       <div className="p-4">
         <form
           onSubmit={handleSendMessage}
@@ -112,7 +113,7 @@ const Chat = () => {
               size="sm"
               className={`ml-auto gap-1.5 ${prompt.length == 0 ? 'opacity-60' : 'opacity-100'}`}
             >
-              Send Message
+              Enviar
               <CornerDownLeft className="size-3.5" />
             </Button>
           </div>
