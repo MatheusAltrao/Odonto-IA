@@ -153,11 +153,11 @@ const Website = () => {
                     <div className="font-semibold">Ana Clara</div>
                   </div>
                   <p className="text-muted-foreground text-left ">
-                    "O Odonto IA foi fundamental para minha aprovação na prova de Biomateriais! A
+                    O Odonto IA foi fundamental para minha aprovação na prova de Biomateriais! A
                     ferramenta me forneceu resumos completos e atualizados sobre os principais
                     tópicos da disciplina, além de exercícios interativos que me ajudaram a fixar o
                     conteúdo. Recomendo para todos os estudantes de odontologia que buscam uma forma
-                    eficaz de estudar e se preparar para as provas."
+                    eficaz de estudar e se preparar para as provas.
                   </p>
                 </div>
               </CardContent>
@@ -172,11 +172,11 @@ const Website = () => {
                     <div className="font-semibold">Bruno Oliveira</div>
                   </div>
                   <p className="text-muted-foreground text-left ">
-                    "O Odonto IA me ajuda a economizar tempo e otimizar meus estudos. A ferramenta
-                    me permite criar resumos personalizados das aulas, o que me facilita na hora de
+                    O Odonto IA me ajuda a economizar tempo e otimizar meus estudos. A ferramenta me
+                    permite criar resumos personalizados das aulas, o que me facilita na hora de
                     revisar para as provas. Além disso, o Odonto IA oferece videoaulas e simulados
                     que me ajudam a me preparar ainda melhor. É uma ferramenta completa para o
-                    estudante de odontologia!"
+                    estudante de odontologia!
                   </p>
                 </div>
               </CardContent>
@@ -191,11 +191,11 @@ const Website = () => {
                     <div className="font-semibold">Caroline Silva</div>
                   </div>
                   <p className="text-muted-foreground text-left ">
-                    "O Odonto IA me ajuda a entender melhor os conteúdos das aulas. A ferramenta
+                    O Odonto IA me ajuda a entender melhor os conteúdos das aulas. A ferramenta
                     explica os conceitos de forma clara e concisa, utilizando linguagem simples e
                     exemplos práticos. Isso me permite tirar dúvidas e aprofundar meus
                     conhecimentos. Recomendo para todos os estudantes que têm dificuldade em
-                    acompanhar as aulas ou que precisam de um reforço positivo."
+                    acompanhar as aulas ou que precisam de um reforço positivo.
                   </p>
                 </div>
               </CardContent>
@@ -210,11 +210,11 @@ const Website = () => {
                     <div className="font-semibold">Daniel Souza</div>
                   </div>
                   <p className="text-muted-foreground text-left ">
-                    "O Odonto IA me ajuda a me preparar para as apresentações em grupo. A ferramenta
+                    O Odonto IA me ajuda a me preparar para as apresentações em grupo. A ferramenta
                     me fornece sugestões de temas e me ajuda a organizar minhas ideias. Além disso,
                     o Odonto IA me permite criar slides profissionais e personalizados. É uma
                     ferramenta essencial para qualquer estudante de odontologia que precisa fazer
-                    apresentações."
+                    apresentações.
                   </p>
                 </div>
               </CardContent>
@@ -229,11 +229,11 @@ const Website = () => {
                     <div className="font-semibold">Eduardo Santos</div>
                   </div>
                   <p className="text-muted-foreground text-left ">
-                    "O Odonto IA me ajuda a me preparar para os estágios curriculares. A ferramenta
+                    O Odonto IA me ajuda a me preparar para os estágios curriculares. A ferramenta
                     me fornece informações sobre as principais áreas da odontologia e me ajuda a
                     desenvolver as habilidades necessárias para atuar na clínica. Além disso, o
                     Odonto IA me permite fazer simulados de casos clínicos, o que me deixa mais
-                    confiante para enfrentar os desafios do dia a dia."
+                    confiante para enfrentar os desafios do dia a dia.
                   </p>
                 </div>
               </CardContent>
@@ -248,12 +248,12 @@ const Website = () => {
                     <div className="font-semibold">Gabriela Pereira</div>
                   </div>
                   <p className="text-muted-foreground text-left ">
-                    "O Odonto IA me ajuda a me manter atualizado sobre as últimas novidades da
+                    O Odonto IA me ajuda a me manter atualizado sobre as últimas novidades da
                     odontologia. A ferramenta me envia alertas sobre novos estudos e artigos
                     científicos relevantes para a minha área de estudo. Além disso, o Odonto IA me
                     permite realizar cursos online e participar de webinars com especialistas
                     renomados. É uma ferramenta completa para o estudante de odontologia que busca
-                    se destacar na profissão."
+                    se destacar na profissão.
                   </p>
                 </div>
               </CardContent>
